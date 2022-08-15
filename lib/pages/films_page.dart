@@ -29,14 +29,22 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:init_flutter/models/film.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/film_item.dart';
 
 class FilmsPage extends StatelessWidget {
   const FilmsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Films', style: Theme.of(context).textTheme.titleLarge),
-    );
+    var films = Provider.of<FilmsModel>(context);
+
+    return ListView.builder(
+        itemBuilder: (BuildContext ctx, int position) {
+          return FilmItem(position + 1);
+        },
+        itemCount: films.length);
   }
 }
